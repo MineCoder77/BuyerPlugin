@@ -1,29 +1,36 @@
-# LiteLoaderBDS C++ Plugin Template
+# 🎁Buyer Plugin!
 
-The template repository for LiteLoaderBDS C++ plugin development.
+❗ The LLMoney plugin is required: <a href="https://github.com/LiteLDev/LLMoney/releases">Download</a>.
 
-## Usage
+| Native language  |    C++   |
+| ----------------- | -------- |
 
-* Write and build your plugin
+😋 This is a simple code, which add Buyer on your Server!
 
-  Please refer to [LiteLoaderBDS C++ Plugin Development Documentation](https://cpp.docs.litebds.com/en/) or [LiteLoaderBDS C++ 插件开发文档](https://cpp.docs.litebds.com/zh-Hans/).
+-----
 
-* Edit README.md and LICENSE
+Releases <a href="https://github.com/MineCoder77/BuyerPlugin/releases/tag/BuyerPlugin">here</a>.
 
-  You ought not to keep the original README.md, for it contains instructions on how to build your own plugin, which might not fit your plugin repository. The README.md of your repository should contain instructions on how to build, install and use your plugin.
+Addon <a href="https://github.com/MineCoder77/BuyerAddon">here</a>.
 
-  You don't necessarily want your repository to be open sourced under the Unlicense, so please choose your own license in place of the `LICENSE` file.
+-----
 
-## For Beta Developers
+# 💎 My huge diamond thanks for using this code!
 
-If you would like to experience the latest features for plugins in beta versions of LiteLoaderBDS, you can switch the branch of the SDK to beta. Run the commands below under the plugin repository:
+If u want to compilte it by yourself, do the next steps:
 
+1. Download .zip source_code by this command:
 ```sh
-git submodule set-branch --branch beta SDK
-git submodule update --init --remote
+git clone --recurse-submodule https://github.com/MineCoder77/BuyerPlugin.git
 ```
+2. Unzip it.
+3. Update your SDK:
+```sh
+cd SDK
+git checkout main
+git pull
+```
+3. Edit info about plugin in version.h(if you need).
+4. Compile it!
 
-## License
-
-This repository is open source under the Unlicense.
-Please refer to [the license file](LICENSE) for further information.
+-----
