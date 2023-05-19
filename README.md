@@ -35,4 +35,6 @@ git pull
 3. Edit info about plugin in version.h(if you need).
 4. Compile it!
 
+❗ If u wanna to despawn him, u need to tap on him with slime, when u have a operator permissions.
+
 -----
