@@ -2,7 +2,7 @@
 
 ❗ The LLMoney plugin is required: <a href="https://github.com/LiteLDev/LLMoney/releases">Download</a>.
 
-| Native language  |    C++   |
+| Native language                       |    C++  |
 | Native language of the plugin content |    RU   |
 | ----------------- | -------- |
 
