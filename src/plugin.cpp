@@ -1,21 +1,11 @@
-/**
- * @file plugin.cpp
- * @brief The main file of the plugin
- */
+﻿#include "handler/EventHandler.cpp"
 
-#include <llapi/LoggerAPI.h>
+void PluginInit() {
 
-#include "version.h"
+	EventHandler handler;
+	handler.init();
 
-// We recommend using the global logger.
-extern Logger logger;
+	JsonConfig& config = JsonConfig::get_instance();
+	config.init();
 
-/**
- * @brief The entrypoint of the plugin. DO NOT remove or rename this function.
- *        
- */
-void PluginInit()
-{
-    // Your code here
-    logger.info("Hello, world!");
 }
