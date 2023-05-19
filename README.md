@@ -6,6 +6,7 @@
 | ----------------- | --------------------------- |
 | Native language                       |    C++  |
 | Native language of the plugin content |    RU   |
+| ----------------- | --------------------------- |
 
 😋 This is a simple code, which add Buyer on your Server!
 
