@@ -7,6 +7,8 @@
 
 😋 This is a simple code, which add Buyer on your Server!
 
+![alt text](assets/Buyer2.png "Buyer example")
+
 -----
 
 Releases <a href="https://github.com/MineCoder77/BuyerPlugin/releases/tag/BuyerPlugin">here</a>.
