@@ -2,10 +2,10 @@
 
 ❗ The LLMoney plugin is required: <a href="https://github.com/LiteLDev/LLMoney/releases">Download</a>.
 
-| ----------------- | -------- |
+| ----------------- | --------------------------- |
 | Native language                       |    C++  |
 | Native language of the plugin content |    RU   |
-| ----------------- | -------- |
+| ----------------- | --------------------------- |
 
 😋 This is a simple code, which add Buyer on your Server!
 
