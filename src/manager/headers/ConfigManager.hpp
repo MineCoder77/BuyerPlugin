@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <nlohmann/json.hpp>
 #include <llapi/LoggerAPI.h>
@@ -23,6 +23,8 @@ private:
 	bool create_file();
 	bool isset_config_path();
 	bool isset_config();
+	void set_config();
+	nlohmann::json get_config();
 protected:
 	JsonConfig() {}
 	JsonConfig(const JsonConfig&) = delete;
@@ -31,9 +33,7 @@ protected:
 	friend class JsonConfigDestroyer;
 public:
 	void init();
+	static JsonConfig& get_instance();
 	long get_price(std::string item_id);
 	bool isset_value(std::string item_id);
-	void set_config();
-	static JsonConfig& get_instance();
-	nlohmann::json get_config();
 };
