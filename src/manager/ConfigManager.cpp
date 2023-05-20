@@ -42,7 +42,7 @@ void JsonConfig::init() {
 		else
 			logger.info("Файл prices.json успешно создан!");
 	}
-	JsonConfig::set_config();
+	set_config();
 }
 
 nlohmann::json JsonConfig::get_config() {
