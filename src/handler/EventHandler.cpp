@@ -35,5 +35,5 @@ inline void EventHandler::on_entity_attack() {
 }
 
 inline void EventHandler::init() {
-    on_player_attack();
+    on_entity_attack();
  }
