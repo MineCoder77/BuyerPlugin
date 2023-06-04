@@ -1,6 +1,6 @@
 ﻿#include "headers/EventHandler.hpp"
 
-inline void EventHandler::on_player_attack() {
+inline void EventHandler::on_entity_attack() {
     Event::PlayerAttackEvent::subscribe([](const Event::PlayerAttackEvent& event) {
         if (event.mTarget->getTypeName() == "byr:byr_person") {
             Player* player = event.mPlayer;
