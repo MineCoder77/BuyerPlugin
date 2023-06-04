@@ -9,7 +9,7 @@
 
 class EventHandler {
 private:
-	void on_player_attack();
+	void on_entity_attack();
 public:
 	void init();
 };
