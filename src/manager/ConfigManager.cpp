@@ -1,26 +1,78 @@
-﻿#include "headers/ConfigManager.hpp"
+﻿#include "header/ConfigManager.hpp"
 
-JsonConfig* JsonConfig::p_instance = 0;
+inline JsonConfig JsonConfig::instance = JsonConfig();
 
-JsonConfigDestroyer JsonConfig::destroyer;
-  
-JsonConfigDestroyer::~JsonConfigDestroyer() {
-    delete p_instance;
+inline JsonConfig& JsonConfig::get_instance() {
+	return instance;
 }
 
-void JsonConfigDestroyer::initialize(JsonConfig* p) {
-    p_instance = p; 
+inline nlohmann::json JsonConfig::get_config() {
+	return JsonConfig::json_config;
 }
 
-JsonConfig& JsonConfig::get_instance() {
-    if(!p_instance) {
-        p_instance = new JsonConfig();
-        destroyer.initialize(p_instance);     
-    }
-    return *p_instance;
+inline void JsonConfig::set_config() {
+	std::ifstream file("plugins/Buyer/prices.json");
+	JsonConfig::json_config = nlohmann::json::parse(file);
+	file.close();
 }
 
-void JsonConfig::init() {
+inline const bool JsonConfig::create_file() {
+	nlohmann::json j;
+	j["item_1"]["id"] = "minecraft:diamond_block";
+	j["item_1"]["price"] = 1000;
+	std::ofstream file("plugins/Buyer/prices.json");
+	if (!file) {
+		file.close();
+		return false;
+	}
+	file << std::setw(4) << j << std::endl;
+	file.close();
+	return true;
+}
+
+inline const bool JsonConfig::isset_config_path() {
+	return std::filesystem::exists("plugins/Buyer");
+}
+
+inline const bool JsonConfig::isset_config() {
+	return std::filesystem::exists("plugins/Buyer/prices.json");
+}
+
+inline const long JsonConfig::get_price(std::string item_id) {
+	for (const auto& x : get_config()) {
+		if (x["id"] == "minecraft:" + item_id)
+			return x["price"];
+	}
+	return NULL;
+}
+
+inline const bool JsonConfig::isset_value(std::string item_id) {
+	for (const auto& x : get_config()) {
+		if (x["id"] == "minecraft:" + item_id)
+			return true;
+	}
+	return false;
+}
+
+inline const bool JsonConfig::check_config_correct() {
+	for (const auto& x : get_config()) {
+		if (x.empty()) {
+			logger.error("Информация о предмете не может быть пустой!");
+			return false;
+		}
+		if (!x["id"].is_string()) {
+			logger.error("Айди должно быть строкой!");
+			return false;
+		}
+		if (!x["price"].is_number() || !x["price"].is_number_integer()) {
+			logger.error("Цена должна быть целочисленным числом!");
+			return false;
+		}
+	}
+	return true;
+}
+
+inline const void JsonConfig::init() {
 	if (!isset_config_path()) {
 		logger.info("Папка Buyer не существует. Создаю...");
 		std::filesystem::create_directories("plugins/Buyer");
@@ -43,43 +95,6 @@ void JsonConfig::init() {
 			logger.info("Файл prices.json успешно создан!");
 	}
 	set_config();
-}
-
-nlohmann::json JsonConfig::get_config() {
-	return JsonConfig::json_config;
-}
-
-void JsonConfig::set_config() {
-	std::ifstream file("plugins/Buyer/prices.json");
-	JsonConfig::json_config = nlohmann::json::parse(file);
-	file.close();
-}
-
-bool JsonConfig::create_file() {
-	nlohmann::json j;
-	j["prices"]["57"]["price"] = 1000;
-	std::ofstream file("plugins/Buyer/prices.json");
-	if (!file) {
-		file.close();
-		return false;
-	}
-	file << std::setw(4) << j << std::endl;
-	file.close();
-	return true;
-}
-
-bool JsonConfig::isset_config_path() {
-	return std::filesystem::exists("plugins/Buyer");
-}
-
-bool JsonConfig::isset_config() {
-	return std::filesystem::exists("plugins/Buyer/prices.json");
-}
-
-long JsonConfig::get_price(std::string item_id) {
-	return get_config()["prices"][item_id]["price"];
-}
-
-bool JsonConfig::isset_value(std::string item_id) {
-	return get_config()["prices"].contains(item_id);
+	check_config_correct() ? logger.info("Конфиг-файл настроен правильно. Плагин работает!") :
+		logger.error("В конфиг-файле были найдены ошибки. Пока Вы их не исправите, код не будет работать!");
 }
