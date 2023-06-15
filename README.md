@@ -13,7 +13,7 @@
 
 -----
 
-Releases <a href="https://github.com/MineCoder77/BuyerPlugin/releases/tag/BuyerPlugin">here</a>.
+Releases <a href="https://github.com/MineCoder77/BuyerPlugin/releases">here</a>.
 
 Addon <a href="https://github.com/MineCoder77/BuyerAddon">here</a>.
 
