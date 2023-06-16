@@ -15,6 +15,6 @@ private:
 	EventHandler(const EventHandler&) = delete;
 	EventHandler& operator=(EventHandler&) = delete;
 public:
-	const void init();
+	void init();
 	static EventHandler& get_instance();
 };
