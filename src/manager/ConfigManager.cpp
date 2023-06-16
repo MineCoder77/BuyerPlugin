@@ -16,7 +16,7 @@ inline void JsonConfig::set_config() {
 	file.close();
 }
 
-inline const bool JsonConfig::create_file() {
+inline bool JsonConfig::create_file() {
 	nlohmann::json j;
 	j["item_1"]["id"] = "minecraft:diamond_block";
 	j["item_1"]["price"] = 1000;
@@ -30,15 +30,15 @@ inline const bool JsonConfig::create_file() {
 	return true;
 }
 
-inline const bool JsonConfig::isset_config_path() {
+inline bool JsonConfig::isset_config_path() {
 	return std::filesystem::exists("plugins/Buyer");
 }
 
-inline const bool JsonConfig::isset_config() {
+inline bool JsonConfig::isset_config() {
 	return std::filesystem::exists("plugins/Buyer/prices.json");
 }
 
-inline const long JsonConfig::get_price(std::string item_id) {
+inline long JsonConfig::get_price(std::string item_id) {
 	for (const auto& x : get_config()) {
 		if (x["id"] == "minecraft:" + item_id)
 			return x["price"];
@@ -46,7 +46,7 @@ inline const long JsonConfig::get_price(std::string item_id) {
 	return NULL;
 }
 
-inline const bool JsonConfig::isset_value(std::string item_id) {
+inline bool JsonConfig::isset_value(std::string item_id) {
 	for (const auto& x : get_config()) {
 		if (x["id"] == "minecraft:" + item_id)
 			return true;
@@ -54,7 +54,7 @@ inline const bool JsonConfig::isset_value(std::string item_id) {
 	return false;
 }
 
-inline const bool JsonConfig::check_config_correct() {
+inline bool JsonConfig::is_config_correct() {
 	for (const auto& x : get_config()) {
 		if (x.empty()) {
 			logger.error("Информация о предмете не может быть пустой!");
@@ -72,7 +72,7 @@ inline const bool JsonConfig::check_config_correct() {
 	return true;
 }
 
-inline const void JsonConfig::init() {
+inline void JsonConfig::init() {
 	if (!isset_config_path()) {
 		logger.info("Папка Buyer не существует. Создаю...");
 		std::filesystem::create_directories("plugins/Buyer");
@@ -95,6 +95,6 @@ inline const void JsonConfig::init() {
 			logger.info("Файл prices.json успешно создан!");
 	}
 	set_config();
-	check_config_correct() ? logger.info("Конфиг-файл настроен правильно. Плагин работает!") :
+	is_config_correct() ? logger.info("Конфиг-файл настроен правильно. Плагин работает!") :
 		logger.error("В конфиг-файле были найдены ошибки. Пока Вы их не исправите, код не будет работать!");
 }
