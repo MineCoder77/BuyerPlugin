@@ -40,6 +40,6 @@ inline void EventHandler::on_entity_attack() {
     });
 }
 
-inline const void EventHandler::init() {
+inline void EventHandler::init() {
     on_entity_attack();
  }
