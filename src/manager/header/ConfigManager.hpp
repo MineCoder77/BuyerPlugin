@@ -9,18 +9,18 @@ class JsonConfig {
 private:
 	nlohmann::json json_config;
 	static JsonConfig instance;
-	const bool create_file();
-	const bool isset_config_path();
-	const bool isset_config();
-	const bool check_config_correct();
+	bool create_file();
+	bool isset_config_path();
+	bool isset_config();
+	bool is_config_correct();
 	void set_config();
 	nlohmann::json get_config();
 	JsonConfig() {}
 	JsonConfig(const JsonConfig&) = delete;
 	JsonConfig& operator=(JsonConfig&) = delete;
 public:
-	const void init();
+	void init();
 	static JsonConfig& get_instance();
-	const long get_price(std::string item_id);
-	const bool isset_value(std::string item_id);
+	long get_price(std::string item_id);
+	bool isset_value(std::string item_id);
 };
